@@ -13,7 +13,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static int GetLastPilotId()
         {
-            AirportManagementEntities2 AE = new AirportManagementEntities2();
+            airportdatabaseEntities AE = new airportdatabaseEntities();
             var id = AE.Pilots.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {
@@ -30,7 +30,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                using (var pilot = new AirportManagementEntities2())
+                using (var pilot = new airportdatabaseEntities())
                 {
                     var SsExists = pilot.Managers.FirstOrDefault(x => x.SSNo == p.SocialSecurityNo);
                     if (SsExists != null)

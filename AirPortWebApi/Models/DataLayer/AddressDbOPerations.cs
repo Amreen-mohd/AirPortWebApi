@@ -9,7 +9,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static int GetLastAddressId()
         {
-            AirportManagementEntities2 AE = new AirportManagementEntities2();
+            airportdatabaseEntities AE = new airportdatabaseEntities();
             var id = AE.Addresses.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {

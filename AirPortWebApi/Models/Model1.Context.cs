@@ -15,10 +15,10 @@ namespace AirPortWebApi.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class AirportManagementEntities2 : DbContext
+    public partial class airportdatabaseEntities : DbContext
     {
-        public AirportManagementEntities2()
-            : base("name=AirportManagementEntities2")
+        public airportdatabaseEntities()
+            : base("name=airportdatabaseEntities")
         {
         }
     

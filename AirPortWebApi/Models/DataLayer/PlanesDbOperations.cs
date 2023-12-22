@@ -14,7 +14,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static AddressToClient GetAddress(string email)
         {
-            AirportManagementEntities2 entities = new AirportManagementEntities2();
+            airportdatabaseEntities entities = new airportdatabaseEntities();
             var address = entities.Owners.FirstOrDefault(x => x.Email == email);
             if (address == null)
             {
@@ -37,7 +37,7 @@ namespace AirPortWebApi.Models.DataLayer
         }
         public static int GetLastPlaneId()
         {
-            AirportManagementEntities2 AE = new AirportManagementEntities2();
+            airportdatabaseEntities AE = new airportdatabaseEntities();
             var id = AE.Planes.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {
@@ -52,7 +52,7 @@ namespace AirPortWebApi.Models.DataLayer
         }
         public static int GetIDforOwner()
         {
-            AirportManagementEntities2 AE = new AirportManagementEntities2();
+            airportdatabaseEntities AE = new airportdatabaseEntities();
             var id = AE.Owners.OrderByDescending(item => item.OwnerId).FirstOrDefault();
             if (id == null)
             {
@@ -69,7 +69,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                using (var context = new AirportManagementEntities2())
+                using (var context = new airportdatabaseEntities())
                 {
                     var owner = context.Owners.FirstOrDefault(x => x.Email == p.Email);
                     int Pid = GetLastPlaneId();

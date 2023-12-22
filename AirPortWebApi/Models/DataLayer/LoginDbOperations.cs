@@ -9,7 +9,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public Login GetUser(string email)
         {
-            AirportManagementEntities2 entities = new AirportManagementEntities2();
+            airportdatabaseEntities entities = new airportdatabaseEntities();
             return entities.Logins.FirstOrDefault(x => x.Email == email);
         }
     }
