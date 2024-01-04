@@ -136,6 +136,7 @@ namespace AirPortWebApi.Models.DataLayer
                             h.HangerCapacity = H.HangerCapacity;
                             h.Id = HUniqueId;
                             Hd.HangerDetails.Add(h);
+
                             Hd.SaveChanges();
                             return $"0,hanger added {Hid}";
                         }
