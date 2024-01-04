@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirPortWebApi.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static int GetLastAddressId()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.Addresses.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {

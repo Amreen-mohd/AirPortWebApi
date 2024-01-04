@@ -52,7 +52,7 @@ namespace AirPortWebApi.Models.DataLayer
         }
         public static int GetIDforOwner()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.Owners.OrderByDescending(item => item.OwnerId).FirstOrDefault();
             if (id == null)
             {
@@ -69,7 +69,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                using (var context = new airportdatabaseEntities())
+                using (var context = new serverdbEntities())
                 {
                     var owner = context.Owners.FirstOrDefault(x => x.Email == p.Email);
                     int Pid = GetLastPlaneId();

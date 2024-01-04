@@ -7,31 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AirPortWebApi.Models
+namespace AirPortWebApi.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class Plane
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Manager()
+        public Plane()
         {
-            this.HangerDetails = new HashSet<HangerDetail>();
+            this.Bookings = new HashSet<Booking>();
         }
     
-        public string ManagerId { get; set; }
-        public string ManagerName { get; set; }
-        public string SSNo { get; set; }
-        public System.DateTime Dob { get; set; }
-        public string Gender { get; set; }
-        public string MobileNo { get; set; }
-        public string Email { get; set; }
-        public string AddressId { get; set; }
+        public string PlaneId { get; set; }
+        public string ManufacturerName { get; set; }
+        public string RegNo { get; set; }
+        public string ModelNo { get; set; }
+        public string PlaneName { get; set; }
+        public Nullable<int> Capacity { get; set; }
+        public Nullable<int> OwnerId { get; set; }
         public Nullable<int> Id { get; set; }
     
-        public virtual Address Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HangerDetail> HangerDetails { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual Owner Owner { get; set; }
     }
 }

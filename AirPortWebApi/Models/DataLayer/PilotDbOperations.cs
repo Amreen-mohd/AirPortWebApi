@@ -13,7 +13,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static int GetLastPilotId()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.Pilots.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {

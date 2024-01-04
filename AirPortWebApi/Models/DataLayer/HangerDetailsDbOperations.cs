@@ -15,7 +15,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static int GetLastHangerId()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.HangerDetails.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {
@@ -30,7 +30,7 @@ namespace AirPortWebApi.Models.DataLayer
         }
         public static int GetLastManagerId()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.Managers.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                using (var Hd = new airportdatabaseEntities())
+                using (var Hd = new serverdbEntities())
                 {
                     var SsExists = Hd.Pilots.FirstOrDefault(x => x.SSNo == H.SocialSecuirtyNo);
                     if (SsExists != null)
@@ -205,13 +205,13 @@ namespace AirPortWebApi.Models.DataLayer
 
         public List<GetAvailableHangarsDetails1_Result> GetHangers(DateTime? fromdate, DateTime? todate)
         {
-            airportdatabaseEntities Ae = new airportdatabaseEntities();
+            serverdbEntities Ae = new serverdbEntities();
             return Ae.GetAvailableHangarsDetails1(fromdate, todate).ToList();
         }
 
         public List<GetAvailablePlanes_Result> GetAvailabePlanes(DateTime fromdate, DateTime todate)
         {
-            airportdatabaseEntities Ae = new airportdatabaseEntities();
+            serverdbEntities Ae = new serverdbEntities();
             return Ae.GetAvailablePlanes(fromdate, todate).ToList();
 
         }
@@ -219,7 +219,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                airportdatabaseEntities Ae = new airportdatabaseEntities();
+                serverdbEntities Ae = new serverdbEntities();
                 int bookingCount = Ae.Bookings
                     .Where(x =>
                         x.HangerId == b.HangerId &&
@@ -285,7 +285,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
 
 
-            airportdatabaseEntities Ae = new airportdatabaseEntities();
+            serverdbEntities Ae = new serverdbEntities();
             List<HangerInfo> selectedHangers = Ae.HangerDetails.Select(h => new HangerInfo
             {
                 HangerId = h.HangerId,
@@ -298,7 +298,7 @@ namespace AirPortWebApi.Models.DataLayer
 
         public List<BookingInfo> GetStatus(string HangerId, DateTime fromdate, DateTime todate)
         {
-            airportdatabaseEntities Ae = new airportdatabaseEntities();
+            serverdbEntities Ae = new serverdbEntities();
             var bookingInfoList = Ae.Bookings
                 .Where(booking => booking.FromDate <= todate && fromdate <= booking.ToDate && booking.HangerId == HangerId) // Example condition
                 .Select(booking => new BookingInfo

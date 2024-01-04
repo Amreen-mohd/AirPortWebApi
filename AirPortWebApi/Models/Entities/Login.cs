@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AirPortWebApi.Models
+namespace AirPortWebApi.Models.Entities
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class GetAvailablePlanes_Result
+    public partial class Login
     {
-        public string PlaneId { get; set; }
-        public string ManufacturerName { get; set; }
-        public string RegNo { get; set; }
-        public string ModelNo { get; set; }
-        public string PlaneName { get; set; }
-        public Nullable<int> Capacity { get; set; }
-        public Nullable<int> OwnerId { get; set; }
-        public Nullable<int> Id { get; set; }
+        public string Email { get; set; }
+        public string password { get; set; }
+        public string type { get; set; }
     }
 }

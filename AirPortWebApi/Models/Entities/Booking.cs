@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AirPortWebApi.Models
+namespace AirPortWebApi.Models.Entities
 {
     using System;
     using System.Collections.Generic;

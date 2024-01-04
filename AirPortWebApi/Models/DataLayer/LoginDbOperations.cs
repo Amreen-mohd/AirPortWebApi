@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirPortWebApi.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public Login GetUser(string email)
         {
-            airportdatabaseEntities entities = new airportdatabaseEntities();
+            serverdbEntities entities = new serverdbEntities();
             return entities.Logins.FirstOrDefault(x => x.Email == email);
         }
     }
