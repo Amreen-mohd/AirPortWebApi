@@ -1,5 +1,6 @@
 ﻿using AirPortWebApi.Models;
 using AirPortWebApi.Models.DataLayer;
+using AirPortWebApi.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

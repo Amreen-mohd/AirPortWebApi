@@ -30,7 +30,7 @@ namespace AirPortWebApi.Models.DataLayer
         {
             try
             {
-                using (var pilot = new airportdatabaseEntities())
+                using (var pilot = new serverdbEntities())
                 {
                     var SsExists = pilot.Managers.FirstOrDefault(x => x.SSNo == p.SocialSecurityNo);
                     if (SsExists != null)

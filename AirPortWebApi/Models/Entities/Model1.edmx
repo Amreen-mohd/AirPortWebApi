@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="serverdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="serverdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -181,6 +181,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAvailableHangarsDetails1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetAvailablePlanes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SelectedFromDate" Type="date" Mode="In" />
+          <Parameter Name="SelectedToDate" Type="date" Mode="In" />
+        </Function>
         <EntityContainer Name="serverdbModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
@@ -219,8 +227,7 @@
             <End Role="Planes" EntitySet="Planes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="serverdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -451,7 +458,32 @@
             <End Role="Owner" EntitySet="Owners" />
             <End Role="Planes" EntitySet="Planes" />
           </AssociationSet>
+          <FunctionImport Name="GetAvailableHangarsDetails1" ReturnType="Collection(serverdbModel.GetAvailableHangarsDetails1_Result)">
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetAvailablePlanes" ReturnType="Collection(serverdbModel.GetAvailablePlanes_Result)">
+            <Parameter Name="SelectedFromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="SelectedToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetAvailableHangarsDetails1_Result">
+          <Property Type="String" Name="HangerId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HangerLocation" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="HangerCapacity" Nullable="true" />
+          <Property Type="String" Name="ManagerName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SSNo" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAvailablePlanes_Result">
+          <Property Type="String" Name="PlaneId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ManufacturerName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="RegNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModelNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PlaneName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Capacity" Nullable="true" />
+          <Property Type="Int32" Name="OwnerId" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -558,6 +590,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAvailableHangarsDetails1" FunctionName="serverdbModel.Store.GetAvailableHangarsDetails1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="serverdbModel.GetAvailableHangarsDetails1_Result">
+                <ScalarProperty Name="HangerId" ColumnName="HangerId" />
+                <ScalarProperty Name="HangerLocation" ColumnName="HangerLocation" />
+                <ScalarProperty Name="HangerCapacity" ColumnName="HangerCapacity" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="SSNo" ColumnName="SSNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAvailablePlanes" FunctionName="serverdbModel.Store.GetAvailablePlanes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="serverdbModel.GetAvailablePlanes_Result">
+                <ScalarProperty Name="PlaneId" ColumnName="PlaneId" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+                <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+                <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+                <ScalarProperty Name="PlaneName" ColumnName="PlaneName" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

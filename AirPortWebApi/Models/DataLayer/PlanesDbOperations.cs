@@ -14,7 +14,7 @@ namespace AirPortWebApi.Models.DataLayer
     {
         public static AddressToClient GetAddress(string email)
         {
-            airportdatabaseEntities entities = new airportdatabaseEntities();
+            serverdbEntities entities = new serverdbEntities();
             var address = entities.Owners.FirstOrDefault(x => x.Email == email);
             if (address == null)
             {
@@ -37,7 +37,7 @@ namespace AirPortWebApi.Models.DataLayer
         }
         public static int GetLastPlaneId()
         {
-            airportdatabaseEntities AE = new airportdatabaseEntities();
+            serverdbEntities AE = new serverdbEntities();
             var id = AE.Planes.OrderByDescending(item => item.Id).Take(1).FirstOrDefault();
             if (id == null)
             {

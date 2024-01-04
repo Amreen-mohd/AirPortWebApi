@@ -192,6 +192,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\BookingInfo.cs" />
+    <Compile Include="Models\Entities\GetAvailableHangarsDetails1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\GetAvailablePlanes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\Hanger.cs" />
     <Compile Include="Models\Entities\HangerDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
